@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home | PulseFit Gym{% endblock %}
+{% block content %}
+    <section class="hero">
+        <h1>Book Your Next Class</h1>
+        <p>Simple, fast scheduling. Pick a class or session and a time that works for you.</p>
+        <a href="{% url 'book-appointment' %}" class="btn btn-primary">Book Now</a>
+    </section>
+
+    <section class="services">
+        <h2>Our Classes &amp; Sessions</h2>
+        <div class="service-grid">
+            {% for service in services %}
+                <div class="service-card">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description }}</p>
+                    <p class="service-meta">{{ service.duration_minutes }} min &middot; ${{ service.price }}</p>
+                </div>
+            {% empty %}
+                <p>No classes yet. Add some in the admin panel.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
